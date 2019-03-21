@@ -32,6 +32,9 @@ program.command('init <dirname>').alias('i').description('create a new directory
             if (responses.cors) {
                 exec(`cd ${dirname} && npm i cors`)
             }
+            if (responses.debug) {
+                exec(`cd ${dirname} && npm i morgan`)
+            }
                 let installSpinner = ora('Installing required packages').start()
                 exec(`cd ${dirname} && npm i express body-parser`, (error) => {
                     installSpinner.stopAndPersist({text:'Packages installed', symbol:logSymbols.success});
@@ -39,12 +42,17 @@ program.command('init <dirname>').alias('i').description('create a new directory
                     fs.writeFileSync(`${dirname}/app.js`, "const express = require('express')\nconst bodyParser = require('body-parser')\n")
                     if (responses.cors)
                         fs.appendFileSync(`${dirname}/app.js`, "const cors = require('cors')\n")
+                    if (responses.debug)
+                        fs.appendFileSync(`${dirname}/app.js`, "const morgan = require('morgan')\n")
                     fs.appendFileSync(`${dirname}/app.js`, "\nlet app = express()\n")
                     if (responses.parsing.indexOf("json") > -1) {
                         fs.appendFileSync(`${dirname}/app.js`, "app.use(bodyParser.json())\n")
                     }
                     if (responses.parsing.indexOf("urlEncoded") > -1) {
-                        fs.appendFileSync(`${dirname}/app.js`, "app.use(bodyParser.urlencoded({extended:true}))")
+                        fs.appendFileSync(`${dirname}/app.js`, "app.use(bodyParser.urlencoded({extended:true}))\n")
+                    }
+                    if (responses.debug) {
+                        fs.appendFileSync(`${dirname}/app.js`, "app.use(morgan('dev'))")
                     }
                     fs.appendFileSync(`${dirname}/app.js`, "\n\napp.listen(4000, () => console.log('listening on port 4000'))")
                     writingSpinner.stopAndPersist({text:'Files written', symbol:logSymbols.success})
