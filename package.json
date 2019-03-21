@@ -1,0 +1,33 @@
+{
+  "name": "express-easy-api",
+  "version": "1.0.0",
+  "description": "A simple Cli to bootstrap your next express server",
+  "main": "cli.js",
+  "homepage": "https://github.com/matfire/rest-easy",
+  "bugs": {
+    "url":"https://github.com/matfire/rest-easy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matfire/rest-easy"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "email": "mgassend@gmail.com",
+    "name": "Matteo Gassend"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0",
+    "figlet": "^1.2.1",
+    "inquirer": "^6.2.2",
+    "log-symbols": "^2.2.0",
+    "ora": "^3.2.0"
+  },
+  "bin": {
+    "express-easy-api": "./cli.js"
+  }
+}
