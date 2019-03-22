@@ -5,10 +5,12 @@
 ### Features
 
 -   init : start a new project, setting up cors (if you choose to do so) and bodyParser
+-   addRouter: create a CRUD route and import it into the main application
 
 ### Coming Soon
 
--   addRouter: create a CRUD route and import it into the main application
+- auth : add basic register, login and password recovery routes with json web tokens
+- connect: add connection to database provider
 
 ### Contributing
 
